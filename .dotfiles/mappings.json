@@ -1,4 +1,5 @@
 {
-	"nvim": "~/.config/nvim"
+	"nvim": "~/.config/nvim",
+    "fonts": "~/.config/.fonts"
 }
 
