@@ -4,7 +4,7 @@ set -e
 
 function _general {
     sudo apt install git, libsdl2-gfx-dev, curl, apt-transport-https \
-        ca-certificates, gnupg, lsb-release
+        ca-certificates, gnupg, lsb-release -y
 }
 
 function _docker {
@@ -13,7 +13,7 @@ function _docker {
         https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
         | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io
+    sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 }
 
 function _app_tools {
@@ -33,23 +33,23 @@ function _regolith {
         https://regolith-desktop.org/release-3_0-ubuntu-jammy-amd64 jammy main" | \
         sudo tee /etc/apt/sources.list.d/regolith.list
 
-    sudo apt install regolith-desktop regolith-session-sway regolith-look-nord
-    sudo apt update
-    sudo apt install regolith-desktop regolith-session-flashback regolith-look-lascaille
+    sudo apt install regolith-desktop regolith-session-sway regolith-look-nord -y
+    sudo apt update -y
+    sudo apt install regolith-desktop regolith-session-flashback regolith-look-lascaille -y
 }
 
 function _neovim {
-    sudo apt install neovim
+    sudo apt install neovim -y
 }
 
 function _yubikey {
-    sudo add-apt-repository ppa:yubico/stable && sudo apt update
+    sudo add-apt-repository ppa:yubico/stable -y && sudo apt update -y
 
-    sudo apt install yubioath-desktop 
+    sudo apt install yubioath-desktop -y
 }
 
 function _go {
-    sudo apt install golang-go
+    sudo apt install golang-go -y
 }
 
 function _rust {
@@ -70,19 +70,26 @@ function _pyenv {
 }
 
 function _node {
-    sudo apt install npm
+    sudo apt install npm -y
     sudo npm install -g n
     sudo n stable
     curl -fsSL https://bun.sh/install | bash
 }
 
 function _java {
-    sudo apt install default-jre
-    sudo apt install openjdk-11-jre-headless
-    sudo apt install openjdk-8-jre-headless
-    sudo apt install default-jre
+    sudo apt install default-jre -y
+    sudo apt install openjdk-11-jre-headless -y
+    sudo apt install openjdk-8-jre-headless -y
+    sudo apt install default-jre -y
 }
 
+
+function _ocaml {
+    sudo apt install opam -y
+    opam init
+    eval $(opam env)
+    eval $(opam env --switch=default)
+}
 
 sudo apt update
 
@@ -97,3 +104,4 @@ _rust
 _pyenv
 _node
 _java
+_ocaml

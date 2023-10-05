@@ -12,6 +12,7 @@ require('mason-lspconfig').setup({
 		'rust_analyzer',
 		'pyright',
         'golangci_lint_ls',
+        'ocamllsp',
     },
     handlers = {
         lsp_zero.default_setup,
