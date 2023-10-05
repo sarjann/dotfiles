@@ -1,20 +1,99 @@
-sudo apt-get update
+#!/bin/bash
+set -e
 
 
-sudo apt-get install git
-# Regolith
+function _general {
+    sudo apt install git, libsdl2-gfx-dev, curl, apt-transport-https \
+        ca-certificates, gnupg, lsb-release
+}
 
-wget -qO - https://regolith-desktop.org/regolith.key | \
-gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null
+function _docker {
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \
+        https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+        | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
+}
 
-echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
-https://regolith-desktop.org/release-3_0-ubuntu-jammy-amd64 jammy main" | \
-sudo tee /etc/apt/sources.list.d/regolith.list
+function _app_tools {
+    sudo snap install dbeaver-ce
+    sudo snap install postman
+    sudo snap install slack --classic
+    sudo snap install whatsapp-for-linux
+    sudo snap install spotify
+    sudo snap install code --classic
+    sudo snap install vlc
+}
 
-sudo apt install regolith-desktop regolith-session-sway regolith-look-nord
+function _regolith {
+    wget -qO - https://regolith-desktop.org/regolith.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null
+    echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
+        https://regolith-desktop.org/release-3_0-ubuntu-jammy-amd64 jammy main" | \
+        sudo tee /etc/apt/sources.list.d/regolith.list
+
+    sudo apt install regolith-desktop regolith-session-sway regolith-look-nord
+    sudo apt update
+    sudo apt install regolith-desktop regolith-session-flashback regolith-look-lascaille
+}
+
+function _neovim {
+    sudo apt install neovim
+}
+
+function _yubikey {
+    sudo add-apt-repository ppa:yubico/stable && sudo apt update
+
+    sudo apt install yubioath-desktop 
+}
+
+function _go {
+    sudo apt install golang-go
+}
+
+function _rust {
+    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+    rustup update
+}
+
+function _pyenv {
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    cd ~/.pyenv && src/configure && make -C src
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+
+    source ~/.bashrc
+    git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins/pyenv-pyright
+    pyenv install 3.10.12
+}
+
+function _node {
+    sudo apt install npm
+    sudo npm install -g n
+    sudo n stable
+    curl -fsSL https://bun.sh/install | bash
+}
+
+function _java {
+    sudo apt install default-jre
+    sudo apt install openjdk-11-jre-headless
+    sudo apt install openjdk-8-jre-headless
+    sudo apt install default-jre
+}
+
+
 sudo apt update
-sudo apt install regolith-desktop regolith-session-flashback regolith-look-lascaille
 
-# Neovim
-sudo apt-get install neovim
-
+_general
+_docker
+_app_tools
+_regolith
+_neovim
+_yubikey
+_go
+_rust
+_pyenv
+_node
+_java
