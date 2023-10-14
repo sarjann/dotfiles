@@ -115,6 +115,17 @@ function _ocaml {
     eval $(opam env --switch=default)
 }
 
+function _other_apps {
+    # Signal
+    wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+    cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+    echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+        sudo tee /etc/apt/sources.list.d/signal-xenial.list
+
+    rm signal-desktop-keyring.gpg 2> /dev/null
+    sudo apt update && sudo apt install signal-desktop
+}
+
 sudo apt update
 
 _general
@@ -129,3 +140,4 @@ _python
 _node
 _java
 _ocaml
+_other_apps

@@ -13,6 +13,7 @@ require('mason-lspconfig').setup({
 		'pyright',
         'golangci_lint_ls',
         'ocamllsp',
+        'gopls',
     },
     handlers = {
         lsp_zero.default_setup,
