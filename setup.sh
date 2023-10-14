@@ -65,6 +65,7 @@ function _go {
     sudo snap install go --classic
     # Dot env from go
     go install github.com/rhysd/dotfiles@latest
+    go install github.com/derailed/k9s@latest
 }
 
 function _rust {
