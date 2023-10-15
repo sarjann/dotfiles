@@ -22,3 +22,14 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Diagnostics
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+
+-- Other
+vim.keymap.set("n", "Q", "<nop>")
+
+-- Format
+vim.keymap.set("n", "<leader>m", function()
+    vim.lsp.buf.format()
+end)
+
+-- Tmux
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")

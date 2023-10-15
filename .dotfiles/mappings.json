@@ -1,5 +1,7 @@
 {
 	"nvim": "~/.config/nvim",
-    "fonts": "~/.fonts"
+    "fonts": "~/.fonts",
+    "bin/scripts/tmux-sessionizer": "~/.local/bin/tmux-sessionizer",
+    "tmux.conf": "~/.tmux.conf"
 }
 

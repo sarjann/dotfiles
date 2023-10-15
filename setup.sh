@@ -8,7 +8,7 @@ function _general {
         libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev \
         libffi-dev wget tmux liblzma-dev bzip2 sqlite libsqlite3-dev \
         libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq -y
-    sudo apt install apt-transport-https fuse libfuse -y
+    sudo apt install apt-transport-https fuse libfuse fzf -y
     sudo apt install xclip ffmpeg ripgrep -y
     sudo apt install postgresql redis rabbitmq-server -y
 }
