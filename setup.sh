@@ -11,6 +11,7 @@ function _general {
     sudo apt install apt-transport-https fuse libfuse fzf -y
     sudo apt install xclip ffmpeg ripgrep -y
     sudo apt install postgresql redis rabbitmq-server -y
+    sudo apt install gimp -y
 }
 
 function _docker {
@@ -30,6 +31,7 @@ function _app_tools {
     sudo snap install spotify
     sudo snap install code --classic
     sudo snap install vlc
+    sudo snap install discord
     sudo snap install nvim --classic
     sudo snap install kubectl --classic
 }
@@ -47,6 +49,7 @@ function _regolith {
 }
 
 function _neovim {
+    sudo add-apt-repository ppa:neovim-ppa/unstable -y
     sudo apt install neovim -y
     git clone --depth 1 https://github.com/wbthomason/packer.nvim\
         ~/.local/share/nvim/site/pack/packer/start/packer.nvim
@@ -63,7 +66,7 @@ function _yubikey {
 
 function _go {
     sudo snap install go --classic
-    # Dot env from go
+    go install github.com/cosmtrek/air@latest
     go install github.com/rhysd/dotfiles@latest
     go install github.com/derailed/k9s@latest
 }
@@ -126,6 +129,22 @@ function _other_apps {
     sudo apt update && sudo apt install signal-desktop
 }
 
+function _post_setup_services {
+    sudo rabbitmq-plugins enable rabbitmq_management
+}
+
+#
+function _thorium {
+    wget https://dl.thorium.rocks/debian/dists/stable/thorium.list
+    sudo mv thorium.list /etc/apt/sources.list.d/
+    sudo apt update -y
+    sudo apt install thorium-browser -y
+}
+
+function _slackterm {
+    go install github.com/erroneousboat/slack-term@latest
+}
+
 sudo apt update
 
 _general
@@ -141,3 +160,4 @@ _node
 _java
 _ocaml
 _other_apps
+_post_setup_services
