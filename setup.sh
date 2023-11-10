@@ -9,7 +9,7 @@ function _general {
         libffi-dev wget tmux liblzma-dev bzip2 sqlite libsqlite3-dev \
         libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq -y
     sudo apt install apt-transport-https fuse libfuse fzf -y
-    sudo apt install xclip ffmpeg ripgrep -y
+    sudo apt install xclip ffmpeg ripgrep iperf -y
     sudo apt install postgresql redis rabbitmq-server -y
     sudo apt install gimp -y
 }
@@ -145,6 +145,19 @@ function _slackterm {
     go install github.com/erroneousboat/slack-term@latest
 }
 
+function _lutris {
+    sudo dpkg --add-architecture i386 && sudo apt update && sudo apt install -y wine64 wine32 libasound2-plugins:i386 libsdl2-2.0-0:i386 libdbus-1-3:i386 libsqlite3-0:i386
+}
+
+function _keyboard {
+    xmodmap -e "remove mod1 = Alt_R"
+}
+
+function _dotnet {
+    sudo apt update -y
+    sudo apt upgrade dotnet-sdk-7.0 -y
+}
+
 sudo apt update
 
 _general
@@ -160,4 +173,7 @@ _node
 _java
 _ocaml
 _other_apps
+_keyboard
+_dotnet
 _post_setup_services
+

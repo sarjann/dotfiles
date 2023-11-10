@@ -3,8 +3,8 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Alter copilot
-vim.keymap.set("n", "<leader>cope", ":Copilot enable<CR>")
-vim.keymap.set("n", "<leader>copd", ":Copilot disable<CR>")
+vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
+vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
 
 -- Copy Paste Clipboard
 vim.keymap.set("v", "<leader>y", '"+y')
