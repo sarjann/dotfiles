@@ -78,6 +78,10 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use('nvim-lua/popup.nvim');
+    use('nvim-telescope/telescope-fzy-native.nvim');
+    use('hoob3rt/lualine.nvim');
+    use('ThePrimeagen/git-worktree.nvim');
     use('github/copilot.vim');
     -- use({
         --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",

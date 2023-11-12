@@ -9,8 +9,8 @@ vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
 -- Copy Paste Clipboard
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>p", '"+gP')
-vim.keymap.set("n", "<leader>p", '"+gP')
+vim.keymap.set("v", "<leader>pp", '"+gP')
+vim.keymap.set("n", "<leader>pp", '"+gP')
 
 -- Move lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

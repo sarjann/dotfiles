@@ -158,6 +158,12 @@ function _dotnet {
     sudo apt upgrade dotnet-sdk-7.0 -y
 }
 
+function _helix {
+    sudo add-apt-repository ppa:maveonair/helix-editor -y
+    sudo apt update -y
+    sudo apt install helix -y
+}
+
 sudo apt update
 
 _general
