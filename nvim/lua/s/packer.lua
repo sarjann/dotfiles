@@ -92,7 +92,36 @@ return require('packer').startup(function(use)
             }
         end
     };
-
+    use {
+        "nvim-neorg/neorg",
+        requires = {
+            "nvim-telescope/telescope.nvim",
+        },
+        run = ":Neorg sync-parsers", -- This is the important bit!
+        config = function()
+            require("neorg").setup {
+                load = {
+                    ["core.defaults"] = {},
+                    ["core.concealer"] = {},
+                    ["core.integrations.telescope"] = {},
+                    ["core.dirman"] = {
+                        config = {
+                            workspaces = {
+                                work = "~/notes/work",
+                                home = "~/notes/home",
+                            }
+                        }
+                    }
+                }
+            }
+        end,
+    }
+    use {
+        'nvim-neorg/neorg-telescope',
+        requires = {
+            "nvim-neorg/neorg",
+    }
+    };
     use('ThePrimeagen/git-worktree.nvim');
     use('github/copilot.vim');
     -- use({
