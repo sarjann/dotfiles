@@ -6,4 +6,5 @@ vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
 
 local telescope = require('telescope')
 telescope.load_extension('git_worktree')
-vim.keymap.set('n', '<C-f>', telescope.extensions.git_worktree.create_git_worktree, {})
+vim.keymap.set('n', '<C-g>c', telescope.extensions.git_worktree.create_git_worktree, {})
+vim.keymap.set('n', '<C-g>s', telescope.extensions.git_worktree.git_worktrees, {})
