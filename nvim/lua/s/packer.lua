@@ -73,14 +73,26 @@ return require('packer').startup(function(use)
         'Weissle/persistent-breakpoints.nvim',
         config = function()
             local pers_break = require("persistent-breakpoints")
-            pers_break.setup{
+            pers_break.setup {
                 load_breakpoints_event = {"BufReadPost"}
             }
         end
     }
     use('nvim-lua/popup.nvim');
     use('nvim-telescope/telescope-fzy-native.nvim');
-    use('hoob3rt/lualine.nvim');
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+        config = function()
+            local lualine = require('lualine')
+            lualine.setup {
+                options = {
+                    theme = 'rose-pine'
+                }
+            }
+        end
+    };
+
     use('ThePrimeagen/git-worktree.nvim');
     use('github/copilot.vim');
     -- use({
