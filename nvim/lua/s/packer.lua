@@ -111,7 +111,8 @@ return require('packer').startup(function(use)
                                 home = "~/notes/home",
                             }
                         }
-                    }
+                    },
+                    ["core.integrations.treesitter"] = {},
                 }
             }
         end,
@@ -120,7 +121,7 @@ return require('packer').startup(function(use)
         'nvim-neorg/neorg-telescope',
         requires = {
             "nvim-neorg/neorg",
-    }
+        }
     };
     use('ThePrimeagen/git-worktree.nvim');
     use('github/copilot.vim');

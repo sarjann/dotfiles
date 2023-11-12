@@ -9,6 +9,7 @@ neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, key
 
         i = { -- Bind in insert mode
             { "<C-l>", "core.integrations.telescope.insert_link" },
+            { "<C-f>", "core.integrations.telescope.insert_file_link" },
         },
     }, {
         silent = true,
