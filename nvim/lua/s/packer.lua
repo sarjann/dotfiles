@@ -103,6 +103,7 @@ return require('packer').startup(function(use)
                 load = {
                     ["core.defaults"] = {},
                     ["core.concealer"] = {},
+                    ["core.completion"] = {},
                     ["core.integrations.telescope"] = {},
                     ["core.dirman"] = {
                         config = {
@@ -113,6 +114,11 @@ return require('packer').startup(function(use)
                         }
                     },
                     ["core.integrations.treesitter"] = {},
+                    ["core.export"] = {
+                        export_dir = "~/notes/export"
+                    },
+                    ["core.export.markdown"] = {},
+                    ["core.esupports.hop"] = {},
                 }
             }
         end,
