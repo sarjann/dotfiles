@@ -9,7 +9,7 @@ function _general {
         libffi-dev wget tmux liblzma-dev bzip2 sqlite libsqlite3-dev \
         libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq -y
     sudo apt install apt-transport-https fuse libfuse fzf -y
-    sudo apt install xclip ffmpeg ripgrep iperf -y
+    sudo apt install xclip ffmpeg ripgrep iperf net-tools -y
     sudo apt install postgresql redis rabbitmq-server -y
     sudo apt install gimp -y
 }
@@ -34,6 +34,7 @@ function _app_tools {
     sudo snap install discord
     sudo snap install nvim --classic
     sudo snap install kubectl --classic
+    sudo snap install obsidian --classic
 }
 
 function _regolith {
@@ -164,6 +165,13 @@ function _helix {
     sudo apt install helix -y
 }
 
+function _lazy_git {
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
+}
+
 sudo apt update
 
 _general
@@ -181,5 +189,6 @@ _ocaml
 _other_apps
 _keyboard
 _dotnet
+_lazy_git
 _post_setup_services
 

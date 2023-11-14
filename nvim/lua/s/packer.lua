@@ -31,6 +31,15 @@ return require('packer').startup(function(use)
 
     use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
     use('nvim-treesitter/playground')
+
+    use {
+        'windwp/nvim-ts-autotag',
+        config = function()
+            local autotag = require("nvim-ts-autotag")
+            autotag.setup()
+        end
+    }
+    use("epwalsh/obsidian.nvim")
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
@@ -103,7 +112,11 @@ return require('packer').startup(function(use)
                 load = {
                     ["core.defaults"] = {},
                     ["core.concealer"] = {},
-                    ["core.completion"] = {},
+                    ["core.completion"] = {
+                        config = {
+                            engine = "nvim-cmp",
+                        }
+                    },
                     ["core.integrations.telescope"] = {},
                     ["core.dirman"] = {
                         config = {
@@ -115,7 +128,9 @@ return require('packer').startup(function(use)
                     },
                     ["core.integrations.treesitter"] = {},
                     ["core.export"] = {
-                        export_dir = "~/notes/export"
+                        config = {
+                            export_dir = "~/notes/export"
+                        }
                     },
                     ["core.export.markdown"] = {},
                     ["core.esupports.hop"] = {},
