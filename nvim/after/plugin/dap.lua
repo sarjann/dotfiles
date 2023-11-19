@@ -75,3 +75,18 @@ dap.configurations.rust= {
   },
 }
 
+dap.configurations.c = {
+    {
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/build/make/Debug', 'file')
+        end,
+        --program = '${fileDirname}/${fileBasenameNoExtension}',
+        cwd = '${workspaceFolder}',
+        terminal = 'integrated'
+    }
+}
+
+dap.configurations.cpp = dap.configurations.c
+

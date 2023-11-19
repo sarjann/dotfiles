@@ -14,6 +14,7 @@ require('mason-lspconfig').setup({
         'golangci_lint_ls',
         'ocamllsp',
         'gopls',
+        'clangd',
     },
     handlers = {
         lsp_zero.default_setup,

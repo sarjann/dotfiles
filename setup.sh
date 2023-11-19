@@ -10,8 +10,10 @@ function _general {
         libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq -y
     sudo apt install apt-transport-https fuse libfuse fzf -y
     sudo apt install xclip ffmpeg ripgrep iperf net-tools -y
-    sudo apt install postgresql redis rabbitmq-server -y
-    sudo apt install gimp -y
+    sudo apt install postgresql redis rabbitmq-server cmake -y
+    sudo apt install gimp pipx -y
+    # For docks
+    sudo apt install displaylink -y
 }
 
 function _docker {
@@ -172,6 +174,33 @@ function _lazy_git {
     sudo install lazygit /usr/local/bin
 }
 
+function _pipx {
+    pipx install conan
+}
+
+function _brave {
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+    sudo apt update -y
+    sudo apt install brave-browser -y
+}
+
+function _warpd {
+    (git clone https://github.com/rvaiya/warpd.git
+    cd warpd
+    sudo apt-get install \
+        libxi-dev \
+        libxinerama-dev \
+        libxft-dev \
+        libxfixes-dev \
+        libxtst-dev \
+        libx11-dev \
+        libcairo2-dev \
+        libxkbcommon-dev \
+        libwayland-dev &&
+        make && sudo make install)
+    }
+
 sudo apt update
 
 _general
@@ -190,5 +219,8 @@ _other_apps
 _keyboard
 _dotnet
 _lazy_git
+_pipx
+_brave
 _post_setup_services
+_warpd
 
