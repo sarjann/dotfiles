@@ -31,5 +31,11 @@ vim.keymap.set("n", "<leader>m", function()
     vim.lsp.buf.format()
 end)
 
+-- Save (Also W allowed as often shift is held when using ;)
+vim.keymap.set("n", "<leader>w", function()
+    vim.cmd("w")
+end)
+vim.cmd("command! W :w", { noremap = true, silent = true })
+
 -- Tmux
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")

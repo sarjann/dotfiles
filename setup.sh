@@ -14,6 +14,9 @@ function _general {
     sudo apt install gimp pipx -y
     # For docks
     sudo apt install displaylink -y
+    #
+    sudo apt install ranger -y
+    sudo apt install streamlink -y
 }
 
 function _docker {
@@ -130,6 +133,9 @@ function _other_apps {
 
     rm signal-desktop-keyring.gpg 2> /dev/null
     sudo apt update && sudo apt install signal-desktop
+    # cht.sh
+    curl -s https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh && sudo chmod +x /usr/local/bin/cht.sh
+    sudo apt install rlwrap xsel -y
 }
 
 function _post_setup_services {
@@ -200,6 +206,7 @@ function _warpd {
         libwayland-dev &&
         make && sudo make install)
     }
+
 
 sudo apt update
 

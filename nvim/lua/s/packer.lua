@@ -21,6 +21,18 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
+    use {
+        "kelly-lin/ranger.nvim",
+        config = function()
+            require("ranger-nvim").setup({ replace_netrw = false })
+            vim.api.nvim_set_keymap("n", "<leader>ef", "", {
+                noremap = true,
+                callback = function()
+                    require("ranger-nvim").open(true)
+                end,
+            })
+        end,
+    }
     use({
         'rose-pine/neovim',
         as = 'rose-pine',

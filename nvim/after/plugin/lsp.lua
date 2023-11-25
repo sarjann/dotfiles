@@ -11,13 +11,13 @@ require('mason-lspconfig').setup({
 		'eslint',
 		'rust_analyzer',
 		'pyright',
-        'golangci_lint_ls',
-        'ocamllsp',
-        'gopls',
-        'clangd',
-    },
-    handlers = {
-        lsp_zero.default_setup,
-    },
+		'golangci_lint_ls',
+		'ocamllsp',
+		'gopls',
+		'clangd',
+	},
+	handlers = {
+		lsp_zero.default_setup,
+	},
 })
 
