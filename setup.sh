@@ -1,21 +1,21 @@
 #!/bin/bash
 set -e
 
-
 function _general {
     sudo apt install git libsdl2-gfx-dev curl apt-transport-https \
         ca-certificates gnupg lsb-release build-essential zlib1g-dev \
         libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev \
         libffi-dev wget tmux liblzma-dev bzip2 sqlite libsqlite3-dev \
-        libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq -y
+        libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq \
+        libopenblas-dev -y
     sudo apt install apt-transport-https fuse libfuse fzf -y
     sudo apt install xclip ffmpeg ripgrep iperf net-tools -y
     sudo apt install postgresql redis rabbitmq-server cmake -y
-    sudo apt install gimp pipx -y
+    sudo apt install gimp pipx tree nasm -y
     # For docks
     sudo apt install displaylink -y
     #
-    sudo apt install ranger -y
+    sudo apt install ranger fish -y
     sudo apt install streamlink -y
 }
 
@@ -26,6 +26,9 @@ function _docker {
         | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt update
     sudo apt install docker-ce docker-ce-cli containerd.io -y
+    # Remove sudo requirement
+    sudo usermod -aG docker $USER
+    newgrp docker
 }
 
 function _app_tools {
@@ -40,6 +43,7 @@ function _app_tools {
     sudo snap install nvim --classic
     sudo snap install kubectl --classic
     sudo snap install obsidian --classic
+    sudo snap install insomnia
 }
 
 function _regolith {
@@ -81,7 +85,12 @@ function _rust {
     curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
     source ~/.bashrc
     rustup update
+    rustup toolchain install nightly
     cargo install cargo-watch
+    cargo install wasm-pack
+    cargo install cargo-generate
+
+    # cargo +nightly install youtui
 }
 
 function _python {
@@ -119,7 +128,9 @@ function _java {
 
 function _ocaml {
     sudo apt install opam -y
+    opam install dune ocaml-lsp-server odoc ocamlformat utop -y
     opam init
+    opam install utop -y
     eval $(opam env)
     eval $(opam env --switch=default)
 }
@@ -205,8 +216,44 @@ function _warpd {
         libxkbcommon-dev \
         libwayland-dev &&
         make && sudo make install)
-    }
+}
 
+function _kiwix {
+    # DISABLED
+    sudo add-apt-repository ppa:kiwixteam/release -y
+    sudo apt update
+    # Lib Kiwix
+    sudo apt install libzim-dev libpugixml-dev -y
+    # Kiwix Tools
+    sudo apt-get install libqt5gui5 qtbase5-dev qtwebengine5-dev \
+        libqt5svg5-dev qt5-image-formats-plugins aria2 \
+        qttools5-dev-tools qtchooser qt5-qmake \
+        qtbase5-dev-tools -y
+    sudo apt install kiwix -y
+}
+
+function _mongo {
+    curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+        sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+        --dearmor
+    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+    sudo apt update
+    sudo apt-get install -y mongodb-org
+    sudo systemctl start mongod
+    sudo systemctl enable mongod
+}
+
+function _emacs {
+    sudo apt install emacs-gtk -y
+    rm -rf /home/$USER/.emacs.d/
+    git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+    cd ~/.emacs.d
+    ./bin/doom install
+}
+
+function _osdev {
+    sudo apt install bison libmpfr-dev libgmp3-dev libmpc-dev -y
+}
 
 sudo apt update
 
@@ -230,4 +277,6 @@ _pipx
 _brave
 _post_setup_services
 _warpd
+_mongo
+_osdev
 

@@ -52,7 +52,12 @@ return require('packer').startup(function(use)
         end
     }
     use("epwalsh/obsidian.nvim")
-    use('theprimeagen/harpoon')
+    use("folke/zen-mode.nvim")
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { {"nvim-lua/plenary.nvim"} }
+    }
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use {
@@ -167,13 +172,15 @@ return require('packer').startup(function(use)
             use({
                 "numToStr/Comment.nvim",
                 config = function()
-                    require("Comment").setup()
+                    local comment = require("Comment")
+                    comment.setup()
                 end
             })
             use {
                 "windwp/nvim-autopairs",
                 config = function() require("nvim-autopairs").setup {} end
             }
+
             use {
                 "Dhanus3133/LeetBuddy.nvim",
                 requires = {
@@ -183,7 +190,7 @@ return require('packer').startup(function(use)
                 config = function()
                     require('leetbuddy').setup({
                         domain = "com",
-                        language = "rs",
+                        language = "py",
                     })
                 end
             }
