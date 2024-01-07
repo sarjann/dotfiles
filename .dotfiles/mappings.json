@@ -2,6 +2,7 @@
 	"nvim": "~/.config/nvim",
     "fonts": "~/.fonts",
     "bin/scripts/tmux-sessionizer": "~/.local/bin/tmux-sessionizer",
-    "tmux.conf": "~/.tmux.conf"
+    "tmux.conf": "~/.tmux.conf",
+    "clang-format": "~/.clang-format"
 }
 

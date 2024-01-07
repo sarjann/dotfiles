@@ -8,6 +8,8 @@ function _general {
         libffi-dev wget tmux liblzma-dev bzip2 sqlite libsqlite3-dev \
         libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq \
         libopenblas-dev -y
+    sudo apt-get install libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 \
+        libsdl2-image-dev
     sudo apt install apt-transport-https fuse libfuse fzf -y
     sudo apt install xclip ffmpeg ripgrep iperf net-tools -y
     sudo apt install postgresql redis rabbitmq-server cmake -y
@@ -15,7 +17,8 @@ function _general {
     # For docks
     sudo apt install displaylink -y
     #
-    sudo apt install ranger fish -y
+    sudo apt install cifs-utils -y
+    sudo apt install ranger fish lynx -y
     sudo apt install streamlink -y
 }
 
@@ -89,6 +92,9 @@ function _rust {
     cargo install cargo-watch
     cargo install wasm-pack
     cargo install cargo-generate
+
+    # Cargo Tools
+    cargo install cargo-cache rtx-cli wiki-tui speedtest-rs du-dust
 
     # cargo +nightly install youtui
 }

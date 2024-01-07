@@ -162,42 +162,50 @@ return require('packer').startup(function(use)
         }
     };
     use('ThePrimeagen/git-worktree.nvim');
-    use('github/copilot.vim');
-    -- use({
-        --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        --     config = function()
-            --         require("lsp_lines").setup()
-            --     end,
-            -- })
-            use({
-                "numToStr/Comment.nvim",
-                config = function()
-                    local comment = require("Comment")
-                    comment.setup()
-                end
-            })
-            use {
-                "windwp/nvim-autopairs",
-                config = function() require("nvim-autopairs").setup {} end
-            }
+    use { 'sourcegraph/sg.nvim',
+    run = 'nvim -l build/init.lua',
+    config = function()
+        local sg = require("sg");
+        sg.setup();
+    end,
+    };
 
-            use {
-                "Dhanus3133/LeetBuddy.nvim",
-                requires = {
-                    "nvim-lua/plenary.nvim",
-                    "nvim-telescope/telescope.nvim",
-                },
-                config = function()
-                    require('leetbuddy').setup({
-                        domain = "com",
-                        language = "py",
-                    })
-                end
-            }
-            use {
-                "dzfrias/arena.nvim",
-                config = function()
-                    require("arena").setup()
-                end
-            }
-        end)
+    use('github/copilot.vim');
+    use {
+        'RaafatTurki/hex.nvim',
+        config = function()
+            require('hex').setup({
+            })
+        end
+    };
+    use({
+        "numToStr/Comment.nvim",
+        config = function()
+            local comment = require("Comment")
+            comment.setup()
+        end
+    })
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+    use {
+        "Dhanus3133/LeetBuddy.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+        },
+        config = function()
+            require('leetbuddy').setup({
+                domain = "com",
+                language = "py",
+            })
+        end
+    }
+    use {
+        "dzfrias/arena.nvim",
+        config = function()
+            require("arena").setup()
+        end
+    }
+    end)

@@ -3,17 +3,21 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/repo ~/git ~/repo/go ~/repo/rust ~/repo/dotfiles -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$((find ~/repo ~/git ~/repo/go ~/repo/go/advent_of_code \
+        ~/repo/rust ~/repo/ocaml ~/repo/c ~/repo/cpp ~/repo/dotfiles ~/repo/python \
+        ~/git/spirable-research.git/*/pavlov-services/apps/ \
+        -mindepth 1 -maxdepth 1 -type d ; \
+        find ~/notes ~/obsidian -type d) | fzf)
 fi
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected_name=$(basename "${selected:-}" | tr . _)
 tmux_running=$(pgrep tmux)
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+if [[ -z ${TMUX:-} ]] && [[ -z ${tmux_running:-} ]]; then
     tmux new-session -s $selected_name -c $selected
     exit 0
 fi
