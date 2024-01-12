@@ -80,7 +80,8 @@ dap.configurations.c = {
         type = 'codelldb',
         request = 'launch',
         program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/build/make/Debug', 'file')
+            -- return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/build/make/Debug', 'file')
+            return vim.fn.getcwd()..'/target/out'
         end,
         --program = '${fileDirname}/${fileBasenameNoExtension}',
         cwd = '${workspaceFolder}',

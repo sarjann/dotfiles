@@ -12,7 +12,7 @@ function _general {
         libsdl2-image-dev
     sudo apt install apt-transport-https fuse libfuse fzf -y
     sudo apt install xclip ffmpeg ripgrep iperf net-tools -y
-    sudo apt install postgresql redis rabbitmq-server cmake -y
+    sudo apt install postgresql redis rabbitmq-server cmake bear valgrind -y
     sudo apt install gimp pipx tree nasm -y
     # For docks
     sudo apt install displaylink -y
@@ -94,8 +94,8 @@ function _rust {
     cargo install cargo-generate
 
     # Cargo Tools
-    cargo install cargo-cache rtx-cli wiki-tui speedtest-rs du-dust
-
+    cargo install cargo-cache rtx-cli wiki-tui speedtest-rs du-dust nu
+    cargo install --locked zellij
     # cargo +nightly install youtui
 }
 

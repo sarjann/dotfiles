@@ -1,1 +1,6 @@
 IndentWidth: 4
+TabWidth: 4
+ContinuationIndentWidth: 8
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+
