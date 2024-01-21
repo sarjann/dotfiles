@@ -31,7 +31,7 @@ vim.keymap.set("n", "<leader>m", function()
     vim.lsp.buf.format()
 end)
 
--- Save (Also W allowed as often shift is held when using ;)
+-- Save ()
 vim.keymap.set("n", "<leader>w", function()
     vim.cmd("w")
 end)

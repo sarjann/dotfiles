@@ -5,6 +5,7 @@ if [[ $# -eq 1 ]]; then
 else
     selected=$((find ~/repo ~/git ~/repo/go ~/repo/go/advent_of_code \
         ~/repo/rust ~/repo/ocaml ~/repo/c ~/repo/cpp ~/repo/dotfiles ~/repo/python \
+        ~/repo/neovim ~/repo/elixir ~/junk \
         ~/git/spirable-research.git/*/pavlov-services/apps/ \
         -mindepth 1 -maxdepth 1 -type d ; \
         find ~/notes ~/obsidian -type d) | fzf)

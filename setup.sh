@@ -12,7 +12,7 @@ function _general {
         libsdl2-image-dev
     sudo apt install apt-transport-https fuse libfuse fzf -y
     sudo apt install xclip ffmpeg ripgrep iperf net-tools -y
-    sudo apt install postgresql redis rabbitmq-server cmake bear valgrind -y
+    sudo apt install postgresql redis rabbitmq-server cmake bear valgrind luarocks -y
     sudo apt install gimp pipx tree nasm -y
     # For docks
     sudo apt install displaylink -y
@@ -20,6 +20,7 @@ function _general {
     sudo apt install cifs-utils -y
     sudo apt install ranger fish lynx -y
     sudo apt install streamlink -y
+    sudo apt install dconf-cli dconf-editor gnome-tweaks -y
 }
 
 function _docker {
@@ -96,6 +97,7 @@ function _rust {
     # Cargo Tools
     cargo install cargo-cache rtx-cli wiki-tui speedtest-rs du-dust nu
     cargo install --locked zellij
+    cargo install --locked navi
     # cargo +nightly install youtui
 }
 
@@ -261,6 +263,12 @@ function _osdev {
     sudo apt install bison libmpfr-dev libgmp3-dev libmpc-dev -y
 }
 
+function _erlang {
+    sudo add-apt-repository ppa:rabbitmq/rabbitmq-erlang -y
+    sudo apt update -y
+    sudo apt install elixir erlang-dev erlang-xmerl -y
+}
+
 sudo apt update
 
 _general
@@ -285,4 +293,5 @@ _post_setup_services
 _warpd
 _mongo
 _osdev
+_erlang
 

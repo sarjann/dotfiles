@@ -1,23 +1,32 @@
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({buffer = bufnr})
+    lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = {
-		'tsserver',
-		'eslint',
-		'rust_analyzer',
-		'pyright',
-		'golangci_lint_ls',
-		'ocamllsp',
-		'gopls',
-		'clangd',
-	},
-	handlers = {
-		lsp_zero.default_setup,
-	},
+    ensure_installed = {
+        'tsserver',
+        'lua_ls',
+        'eslint',
+        'elixirls',
+        'rust_analyzer',
+        'pyright',
+        'gopls',
+        'ocamllsp',
+        'gopls',
+        'clangd',
+        'html',
+        'jsonls',
+        'bashls',
+        'cmake',
+        'dockerls',
+        'htmx',
+        'taplo',
+        'hydra_lsp'
+    },
+    handlers = {
+        lsp_zero.default_setup,
+    },
 })
-

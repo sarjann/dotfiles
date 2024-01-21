@@ -17,8 +17,7 @@ neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, key
     })
 end)
 
-vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-  pattern = {"*.norg"},
-  command = "set conceallevel=3"
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+    pattern = { "*.norg" },
+    command = "set conceallevel=3"
 })
-

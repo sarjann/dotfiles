@@ -1,19 +1,20 @@
 -- local builtin = require('dap')
 
-vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
 vim.keymap.set('n', '<F6>', function() require('dap').step_over() end)
 vim.keymap.set('n', '<F7>', function() require('dap').step_into() end)
 vim.keymap.set('n', '<F8>', function() require('dap').step_out() end)
 -- vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
 
-vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+vim.keymap.set('n', '<Leader>lp',
+    function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
 vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
 vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
-vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function()
     require('dap.ui.widgets').hover()
 end)
-vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
     require('dap.ui.widgets').preview()
 end)
 vim.keymap.set('n', '<Leader>df', function()
@@ -54,25 +55,25 @@ local dap = require("dap")
 
 
 dap.adapters.codelldb = {
-  type = 'server',
-  port = "1234",
-  executable = {
-    command = 'lldb-vscode',
-    args = {"--port", "1234"},
-  }
+    type = 'server',
+    port = "1234",
+    executable = {
+        command = 'lldb-vscode',
+        args = { "--port", "1234" },
+    }
 }
 
-dap.configurations.rust= {
-  {
-    name = "Launch file",
-    type = "codelldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-  },
+dap.configurations.rust = {
+    {
+        name = "Launch file",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+    },
 }
 
 dap.configurations.c = {
@@ -81,7 +82,7 @@ dap.configurations.c = {
         request = 'launch',
         program = function()
             -- return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/build/make/Debug', 'file')
-            return vim.fn.getcwd()..'/target/out'
+            return vim.fn.getcwd() .. '/target/out'
         end,
         --program = '${fileDirname}/${fileBasenameNoExtension}',
         cwd = '${workspaceFolder}',
@@ -90,4 +91,3 @@ dap.configurations.c = {
 }
 
 dap.configurations.cpp = dap.configurations.c
-

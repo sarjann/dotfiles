@@ -35,7 +35,7 @@ obsidian.setup({
     follow_url_func = function(url)
         -- Open the URL in the default web browser.
         -- vim.fn.jobstart({"open", url})  -- Mac OS
-        vim.fn.jobstart({"xdg-open", url})  -- linux
+        vim.fn.jobstart({ "xdg-open", url }) -- linux
     end,
     note_id_func = function(title)
         -- Create note IDs in a Zettelkasten format with a timestamp and a prefix.
@@ -65,8 +65,10 @@ function _G.new_obsidian_note()
     vim.cmd("ObsidianNew " .. note_name)
 end
 
-vim.api.nvim_set_keymap('n', '<C-g>g', '<cmd>ObsidianQuickSwitch<cr>', { noremap = true, silent = true, desc = "Search Notes" })
-vim.api.nvim_set_keymap('n', '<C-g>n', ':lua new_obsidian_note()<cr>', { noremap = true, silent = true, desc = "Create Notes" })
+vim.api.nvim_set_keymap('n', '<C-g>g', '<cmd>ObsidianQuickSwitch<cr>',
+    { noremap = true, silent = true, desc = "Search Notes" })
+vim.api.nvim_set_keymap('n', '<C-g>n', ':lua new_obsidian_note()<cr>',
+    { noremap = true, silent = true, desc = "Create Notes" })
 vim.api.nvim_set_keymap('n', '<C-g>o', '<cmd>ObsidianOpen<cr>', { noremap = true, silent = true, desc = "Open Notes" })
-vim.api.nvim_set_keymap('n', '<C-g>r', ':lua rename_obsidian_note()<cr>', { noremap = true, silent = true, desc = "Rename Notes" })
-
+vim.api.nvim_set_keymap('n', '<C-g>r', ':lua rename_obsidian_note()<cr>',
+    { noremap = true, silent = true, desc = "Rename Notes" })

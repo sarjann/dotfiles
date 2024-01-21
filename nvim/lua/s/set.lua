@@ -35,4 +35,3 @@ vim.g.mapleader = " "
 
 -- Whitespace
 vim.cmd("set list lcs=tab:>>,trail:.,")
-
