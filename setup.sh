@@ -7,7 +7,8 @@ function _general {
         libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev \
         libffi-dev wget tmux liblzma-dev bzip2 sqlite libsqlite3-dev \
         libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq \
-        libopenblas-dev -y
+        libopenblas-dev libclang-dev libgtk-3-dev libxcb-render0-dev \
+        libxcb-shape0-dev libxcb-xfixes0-dev dnsutils -y
     sudo apt-get install libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 \
         libsdl2-image-dev
     sudo apt install apt-transport-https fuse libfuse fzf -y
@@ -269,6 +270,16 @@ function _erlang {
     sudo apt install elixir erlang-dev erlang-xmerl -y
 }
 
+function _osdev {
+    sudo apt install aqemu -y
+}
+
+function _manual_nvim {
+    mkdir -p ~/.vim/pack/tpope/start
+    cd ~/.vim/pack/tpope/start
+    git clone https://tpope.io/vim/dadbod.git
+}
+
 sudo apt update
 
 _general
@@ -294,4 +305,5 @@ _warpd
 _mongo
 _osdev
 _erlang
+_manual_nvim
 

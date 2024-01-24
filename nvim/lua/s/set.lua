@@ -34,4 +34,17 @@ vim.opt.conceallevel = 2
 vim.g.mapleader = " "
 
 -- Whitespace
-vim.cmd("set list lcs=tab:>>,trail:.,")
+local show_tabs = false
+
+vim.opt.listchars:append("nbsp:×")
+vim.opt.listchars:append("trail:.,")
+
+if show_tabs then
+    vim.opt.listchars:append("tab:>>")
+else
+    vim.opt.listchars:append("tab:  ")
+end
+
+
+
+vim.opt.list = true

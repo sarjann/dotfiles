@@ -39,3 +39,7 @@ vim.cmd("command! W :w", { noremap = true, silent = true })
 
 -- Tmux
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- GO
+vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>j<Esc>")
+vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Opanic(err)<Esc>j<Esc>")
