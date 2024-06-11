@@ -2,19 +2,23 @@
 set -e
 
 function _general {
-    sudo apt install git libsdl2-gfx-dev curl apt-transport-https \
+    sudo apt install git curl apt-transport-https \
         ca-certificates gnupg lsb-release build-essential zlib1g-dev \
         libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev \
         libffi-dev wget tmux liblzma-dev bzip2 sqlite libsqlite3-dev \
         libbz2-dev python-tk python3-tk python3-dotenv-cli tk-dev git-lfs jq \
         libopenblas-dev libclang-dev libgtk-3-dev libxcb-render0-dev \
-        libxcb-shape0-dev libxcb-xfixes0-dev dnsutils -y
+        libxcb-shape0-dev libxcb-xfixes0-dev dnsutils libusb-dev -y
     sudo apt-get install libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 \
-        libsdl2-image-dev
-    sudo apt install apt-transport-https fuse libfuse fzf -y
+        libsdl2-image-dev libsdl2-gfx-dev libpq-dev libmtp-dev -y
+    sudo apt install libzstd-dev -y
+    sudo apt install apt-transport-https fuse libfuse fzf kcachegrind tar -y
     sudo apt install xclip ffmpeg ripgrep iperf net-tools -y
     sudo apt install postgresql redis rabbitmq-server cmake bear valgrind luarocks -y
-    sudo apt install gimp pipx tree nasm -y
+    sudo apt install gimp pipx tree nasm gh -y
+    # x11
+    sudo apt install libgles2-mesa-dev libx11-xcb-dev libxcb-xkb-dev libxkbcommon-x11-dev -y
+
     # For docks
     sudo apt install displaylink -y
     #
@@ -41,7 +45,6 @@ function _app_tools {
     sudo snap install postman
     sudo snap install slack --classic
     sudo snap install whatsapp-for-linux
-    sudo snap install spotify
     sudo snap install code --classic
     sudo snap install vlc
     sudo snap install discord
@@ -51,7 +54,7 @@ function _app_tools {
     sudo snap install insomnia
 }
 
-function _regolith {
+function _regolith_and_sway {
     wget -qO - https://regolith-desktop.org/regolith.key | \
     gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null
     echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
@@ -61,6 +64,9 @@ function _regolith {
     sudo apt update -y
     sudo apt install regolith-desktop regolith-session-sway regolith-look-nord -y
     sudo apt install regolith-desktop regolith-session-flashback regolith-look-lascaille -y
+
+    # Sway
+    sudo apt install sway -y
 }
 
 function _neovim {
@@ -80,7 +86,10 @@ function _yubikey {
 }
 
 function _go {
-    sudo snap install go --classic
+    wget https://golang.org/dl/go1.21.6.linux-amd64.tar.gz
+    sudo tar -xvf go1.21.6.linux-amd64.tar.gz -C /usr/local
+    export PATH=$PATH:/usr/local/go/bin
+
     go install github.com/cosmtrek/air@latest
     go install github.com/rhysd/dotfiles@latest
     go install github.com/derailed/k9s@latest
@@ -122,7 +131,8 @@ function _python {
 
 function _node {
     sudo apt install npm -y
-    sudo npm install -g n
+    sudo npm install -g n -y
+    sudo npm install -g serve -y
     sudo n stable
     curl -fsSL https://bun.sh/install | bash
 }
@@ -280,12 +290,19 @@ function _manual_nvim {
     git clone https://tpope.io/vim/dadbod.git
 }
 
+function _spotify {
+    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+    sudo apt-get update && sudo apt-get install spotify-client
+}
+
+sudo tar -xvf go1.21.x.linux-amd64.tar.gz -C /usr/local
+
 sudo apt update
 
 _general
 _docker
 _app_tools
-_regolith
+_regolith_and_sway
 _neovim
 _yubikey
 _go

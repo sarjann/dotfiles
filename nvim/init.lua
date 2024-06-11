@@ -70,7 +70,7 @@ local plugins = {
     },
     {
         'rcarriga/nvim-dap-ui',
-        dependencies = { 'mfussenegger/nvim-dap' },
+        dependencies = { 'mfussenegger/nvim-dap', "nvim-neotest/nvim-nio" },
         config = function()
             local dapui = require("dapui")
             dapui.setup()
@@ -100,42 +100,42 @@ local plugins = {
             }
         end
     },
-    {
-        'nvim-neorg/neorg',
-        dependencies = { 'nvim-telescope/telescope.nvim' },
-        build = ":Neorg sync-parsers",
-        config = function()
-            require("neorg").setup {
-                load = {
-                    ["core.defaults"] = {},
-                    ["core.concealer"] = {},
-                    ["core.completion"] = {
-                        config = {
-                            engine = "nvim-cmp",
-                        }
-                    },
-                    ["core.integrations.telescope"] = {},
-                    ["core.dirman"] = {
-                        config = {
-                            workspaces = {
-                                work = "~/notes/work",
-                                home = "~/notes/home",
-                            }
-                        }
-                    },
-                    ["core.integrations.treesitter"] = {},
-                    ["core.export"] = {
-                        config = {
-                            export_dir = "~/notes/export"
-                        }
-                    },
-                    ["core.export.markdown"] = {},
-                    ["core.esupports.hop"] = {},
-                }
-            }
-        end
-    },
-    { 'nvim-neorg/neorg-telescope',    dependencies = { 'nvim-neorg/neorg' } },
+    -- {
+    --     'nvim-neorg/neorg',
+    --     dependencies = { 'nvim-telescope/telescope.nvim' },
+    --     build = ":Neorg sync-parsers",
+    --     config = function()
+    --         require("neorg").setup {
+    --             load = {
+    --                 ["core.defaults"] = {},
+    --                 ["core.concealer"] = {},
+    --                 ["core.completion"] = {
+    --                     config = {
+    --                         engine = "nvim-cmp",
+    --                     }
+    --                 },
+    --                 ["core.integrations.telescope"] = {},
+    --                 ["core.dirman"] = {
+    --                     config = {
+    --                         workspaces = {
+    --                             work = "~/notes/work",
+    --                             home = "~/notes/home",
+    --                         }
+    --                     }
+    --                 },
+    --                 ["core.integrations.treesitter"] = {},
+    --                 ["core.export"] = {
+    --                     config = {
+    --                         export_dir = "~/notes/export"
+    --                     }
+    --                 },
+    --                 ["core.export.markdown"] = {},
+    --                 ["core.esupports.hop"] = {},
+    --             }
+    --         }
+    --     end
+    -- },
+    -- { 'nvim-neorg/neorg-telescope',    dependencies = { 'nvim-neorg/neorg' } },
     { 'ThePrimeagen/git-worktree.nvim' },
     {
         'sourcegraph/sg.nvim',
@@ -145,7 +145,23 @@ local plugins = {
             sg.setup();
         end
     },
-    { 'github/copilot.vim' },
+    { 'laytan/cloak.nvim' },
+    {
+        "supermaven-inc/supermaven-nvim",
+        config = function()
+            require("supermaven-nvim").setup({})
+        end,
+    },
+    -- { 'github/copilot.vim' },
+    -- {
+    --     "Exafunction/codeium.nvim",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "hrsh7th/nvim-cmp",
+    --     },
+    --     config = function()
+    --     end
+    -- },
     {
         'RaafatTurki/hex.nvim',
         config = function()
@@ -167,7 +183,7 @@ local plugins = {
             comment.setup();
         end
     },
-    { 'windwp/nvim-autopairs', config = function() require("nvim-autopairs").setup {} end },
+    { 'windwp/nvim-autopairs',      config = function() require("nvim-autopairs").setup {} end },
     {
         'dzfrias/arena.nvim',
         config = function()
@@ -210,35 +226,35 @@ local plugins = {
             { "<C-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
         },
     },
-    {
-        "elixir-tools/elixir-tools.nvim",
-        version = "*",
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            local elixir = require("elixir")
-            local elixirls = require("elixir.elixirls")
-
-            elixir.setup {
-                nextls = { enable = true },
-                credo = {},
-                elixirls = {
-                    enable = true,
-                    settings = elixirls.settings {
-                        dialyzerEnabled = false,
-                        enableTestLenses = false,
-                    },
-                    on_attach = function(client, bufnr)
-                        vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-                        vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-                        vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-                    end,
-                }
-            }
-        end,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-    },
+    -- {
+    --     "elixir-tools/elixir-tools.nvim",
+    --     version = "*",
+    --     event = { "BufReadPre", "BufNewFile" },
+    --     config = function()
+    --         local elixir = require("elixir")
+    --         local elixirls = require("elixir.elixirls")
+    --
+    --         elixir.setup {
+    --             nextls = { enable = true },
+    --             credo = {},
+    --             elixirls = {
+    --                 enable = true,
+    --                 settings = elixirls.settings {
+    --                     dialyzerEnabled = false,
+    --                     enableTestLenses = false,
+    --                 },
+    --                 on_attach = function(client, bufnr)
+    --                     vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+    --                     vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+    --                     vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+    --                 end,
+    --             }
+    --         }
+    --     end,
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --     },
+    -- },
     {
         'kristijanhusak/vim-dadbod-ui',
         dependencies = {

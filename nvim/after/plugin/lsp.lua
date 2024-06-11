@@ -24,7 +24,8 @@ require('mason-lspconfig').setup({
         'dockerls',
         'htmx',
         'taplo',
-        'hydra_lsp'
+        'hydra_lsp',
+        'templ'
     },
     handlers = {
         lsp_zero.default_setup,

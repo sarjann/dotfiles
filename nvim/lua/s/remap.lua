@@ -17,7 +17,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Up Down
-vim.keymap.set("v", "<C-d>", "<C-d>zz")
+vim.keymap.set("v", "<C-d>", "<C-d>m")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Diagnostics
@@ -42,4 +42,4 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- GO
 vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>j<Esc>")
-vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Opanic(err)<Esc>j<Esc>")
+vim.keymap.set("n", "<leader>ep", "oif err != nil {<CR>}<Esc>Opanic(err)<Esc>j<Esc>")

@@ -10,7 +10,7 @@ sudo apt-get install kochmorse -y
 sudo apt-get install ubuntu-restricted-extras -y
 
 ## Z Shell
-sudo apt install zsh -y
+sudo apt install zsh zoxide -y
 # sudo apt install zsh-autosuggestions zsh-syntax-highlighting -y
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions

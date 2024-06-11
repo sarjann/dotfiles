@@ -1,5 +1,8 @@
-#For gopls (believe this is fixed now)
-set for ~/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/lua/lspconfig/server_configurations
-local mod_cache = '/home/s/go/pkg/mod' 
+# For dealing with dotfiles
+https://github.com/rhysd/dotfiles
 
-# devbox
+```bash
+./setup.sh
+dotfiles link
+```
+
