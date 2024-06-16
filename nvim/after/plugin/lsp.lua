@@ -25,9 +25,15 @@ require('mason-lspconfig').setup({
         'htmx',
         'taplo',
         'hydra_lsp',
-        'templ'
+        'templ',
+
     },
     handlers = {
         lsp_zero.default_setup,
     },
 })
+
+
+require('lspconfig').clangd.setup{
+    cmd = { "clangd", "--fallback-style=none" }
+}

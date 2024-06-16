@@ -3,8 +3,11 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Alter copilot
-vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
-vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
+-- vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
+-- vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
+--
+vim.keymap.set("n", "<leader>ce", ":SupermavenStart<CR>")
+vim.keymap.set("n", "<leader>cd", ":SupermavenStop<CR>")
 
 -- Copy Paste Clipboard
 vim.keymap.set("v", "<leader>y", '"+y')
@@ -43,3 +46,14 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- GO
 vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>j<Esc>")
 vim.keymap.set("n", "<leader>ep", "oif err != nil {<CR>}<Esc>Opanic(err)<Esc>j<Esc>")
+
+-- Enable and disable LSP/AI
+vim.api.nvim_create_user_command('DALL', function()
+    vim.cmd('SupermavenStop')
+    vim.cmd('LspStop')
+end, {})
+
+vim.api.nvim_create_user_command('EALL', function()
+    vim.cmd('SupermavenStart')
+    vim.cmd('LspStart')
+end, {})

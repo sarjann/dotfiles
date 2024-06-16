@@ -137,14 +137,14 @@ local plugins = {
     -- },
     -- { 'nvim-neorg/neorg-telescope',    dependencies = { 'nvim-neorg/neorg' } },
     { 'ThePrimeagen/git-worktree.nvim' },
-    {
-        'sourcegraph/sg.nvim',
-        build = 'nvim -l build/init.lua',
-        config = function()
-            local sg = require("sg");
-            sg.setup();
-        end
-    },
+    -- {
+    --     'sourcegraph/sg.nvim',
+    --     build = 'nvim -l build/init.lua',
+    --     config = function()
+    --         local sg = require("sg");
+    --         sg.setup();
+    --     end
+    -- },
     { 'laytan/cloak.nvim' },
     {
         "supermaven-inc/supermaven-nvim",
